@@ -8,6 +8,7 @@ from sync import sync, determine_actions
 
 # E2E : End To End
 class TestE2E:
+    # 인스턴스 없이도 Class 내부 메서드를 실행할 수 있다.
     @staticmethod
     # 원본(Source) 에는 있는데, 사본(Dest) 에는 없는 파일 => 복사되어야 한다.
     def test_when_a_file_exists_in_the_source_but_not_the_destination():
