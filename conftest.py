@@ -47,7 +47,7 @@ def wait_for_webapp_to_come_up():
             time.sleep(0.5)
     pytest.fail("API never came up")
 
-
+# PostgreSQL : RDBMS
 @pytest.fixture(scope="session")
 def postgres_db():
     engine = create_engine(config.get_postgres_uri())
@@ -62,7 +62,7 @@ def postgres_session(postgres_db):
     yield sessionmaker(bind=postgres_db)()
     clear_mappers()
 
-
+# add_stock을 DI 해 준다.
 @pytest.fixture
 def add_stock(postgres_session):
     batches_added = set()
@@ -82,9 +82,12 @@ def add_stock(postgres_session):
             batches_added.add(batch_id)
             skus_added.add(sku)
         postgres_session.commit()
-
+    
+    # 선언한 _add_stock 함수를 반환해 준다.
     yield _add_stock
 
+    # 아래 내용들은 DB에 넣었던 값들을 초기화해주는 내용.
+    # Pytest가 Generator에 접근이 불가능 해 질 때, 아래 부분을 호출해 준다.
     for batch_id in batches_added:
         postgres_session.execute(
             "DELETE FROM allocations WHERE batch_id=:batch_id",

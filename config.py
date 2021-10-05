@@ -1,3 +1,5 @@
+# 설정을 저장하는 모듈
+
 import os
 
 
@@ -11,5 +13,5 @@ def get_postgres_uri():
 
 def get_api_url():
     host = os.environ.get("API_HOST", "localhost")
-    port = 5005 if host == "localhost" else 80
+    port = 6005 if host == "localhost" else 80
     return f"http://{host}:{port}"
