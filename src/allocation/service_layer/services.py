@@ -29,10 +29,10 @@ def allocate(
     uow: unit_of_work.AbstractUnitOfWork,
 ) -> str:
     line = OrderLine(orderid, sku, qty)
-    with uow:
-        batches = uow.batches.list()
+    with uow: # 컨텍스트 관리자로 UoW를 실행한다.
+        batches = uow.batches.list() # UoW는 영속적 저장소에 대한 접근을 제공한다.
         if not is_valid_sku(line.sku, batches):
             raise InvalidSku(f"Invalid sku {line.sku}")
         batchref = model.allocate(line, batches)
-        uow.commit()
+        uow.commit() # 작업이 끝났을 때, UoW를 사용해 커밋하거나 롤백한다.
     return batchref

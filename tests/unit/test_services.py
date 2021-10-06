@@ -17,6 +17,7 @@ class FakeRepository(repository.AbstractRepository):
         return list(self._batches)
 
 
+# UoW의 가짜 작업 단위
 class FakeUnitOfWork(unit_of_work.AbstractUnitOfWork):
     def __init__(self):
         self.batches = FakeRepository([])
