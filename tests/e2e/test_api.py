@@ -21,6 +21,13 @@ def random_orderid(name=""):
     return f"order-{name}-{random_suffix()}"
 
 
+# 기존의 아래와 같던 하드코딩한 SQL을 아래와 같이 API 호출로 바꿀 수 있다.
+# 즉, API 테스트에서 API를 제외한 의존성 (Repository 의존성) 을 없앴다.
+#add_stock(
+#    [
+#        (laterbatch, sku, 100, "2011-01-02"),
+#    ]
+#)
 def post_to_add_batch(ref, sku, qty, eta):
     url = config.get_api_url()
     r = requests.post(

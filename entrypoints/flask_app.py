@@ -12,7 +12,7 @@ orm.start_mappers()
 get_session = sessionmaker(bind=create_engine(config.get_postgres_uri()))
 app = Flask(__name__)
 
-
+# Batch를 추가하는 API Endpoint를 추가하여, 테스트에서 add_stock이라는 Fixture를 없앨 수 있다!
 @app.route("/add_batch", methods=["POST"])
 def add_batch():
     session = get_session()

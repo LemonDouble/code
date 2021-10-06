@@ -1,6 +1,5 @@
 version: "3"
 services:
-
   app:
     build:
       context: .
@@ -15,7 +14,6 @@ services:
     ports:
       - "5005:80"
 
-
   postgres:
     image: postgres:9.6
     environment:
@@ -23,4 +21,3 @@ services:
       - POSTGRES_PASSWORD=abc123
     ports:
       - "54321:5432"
-
