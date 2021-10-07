@@ -7,6 +7,7 @@ class AbstractRepository(abc.ABC):
     def add(self, product: model.Product):
         raise NotImplementedError
 
+    # 이제 Repository는 Aggregate를 반환한다!
     @abc.abstractmethod
     def get(self, sku) -> model.Product:
         raise NotImplementedError

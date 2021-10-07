@@ -10,6 +10,7 @@ from allocation.adapters import repository
 
 
 class AbstractUnitOfWork(abc.ABC):
+    # 이제 UoW는 Aggregate인 Products를 관리한다.
     products: repository.AbstractRepository
 
     def __enter__(self) -> AbstractUnitOfWork:
