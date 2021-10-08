@@ -10,6 +10,7 @@ class Product:
         self.sku = sku
         self.batches = batches
         self.version_number = version_number
+        # 도메인 모델이 이벤트를 기록한다.
         self.events = []  # type: List[events.Event]
 
     def allocate(self, line: OrderLine) -> str:
@@ -18,8 +19,10 @@ class Product:
             batch.allocate(line)
             self.version_number += 1
             return batch.reference
-        except StopIteration:
-            self.events.append(events.OutOfStock(line.sku))
+        except StopIteration: # 만약 Batch가 없는데 allocation 실행한 경우, StopIteration Exception 생긴다.
+            self.events.append(events.OutOfStock(line.sku)) # 이 Exception을 events에 기록해 둔다!
+            # raise OutOfStock(f'Ouf of stock for sku {line.sku}) << 더 이상 도메인에서 Exception을 발생시키지 않는다.
+            # 만약 도메인 이벤트를 구현했다면, 예외로 코드 흐름을 처리해서는 안 된다! (https://softwareengineering.stackexchange.com/questions/189222/are-exceptions-as-control-flow-considered-a-serious-antipattern-if-so-why)
             return None
 
 

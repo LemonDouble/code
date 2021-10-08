@@ -42,7 +42,7 @@ def test_returns_allocated_batch_ref():
     allocation = product.allocate(line)
     assert allocation == in_stock_batch.reference
 
-
+# 애그리게이트가 이벤트를 발생시키는지 검사
 def test_records_out_of_stock_event_if_cannot_allocate():
     batch = Batch("batch1", "SMALL-FORK", 10, eta=today)
     product = Product(sku="SMALL-FORK", batches=[batch])
