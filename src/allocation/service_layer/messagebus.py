@@ -4,7 +4,7 @@ from allocation.domain import events
 
 # Message Bus : 어떤 이벤트가 발생했을 때, 어떤 핸들러 함수가 호출되는 방식
 
-# 어떤 이벤트에 대해서, 해당 이벤트를 처리할 수 있는 핸들ㄹ러 함수를 순차적으로 호출한다.
+# 어떤 이벤트에 대해서, 해당 이벤트를 처리할 수 있는 핸들러 함수를 순차적으로 호출한다.
 def handle(event: events.Event):
     for handler in HANDLERS[type(event)]:
         handler(event)

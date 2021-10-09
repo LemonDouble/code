@@ -21,9 +21,13 @@ class AbstractUnitOfWork(abc.ABC):
         self.rollback()
 
     def commit(self):
+        # Python에서는 private, public 제공하지 않으므로, 편법을 통해 _(언더바) 사용한다.
+        # 하위 메서드는 _commit을 제공하고, 이는 private 메소드처럼 사용된다.
+        # 즉, 외부에서 commit을 호출 -> 실 구현 메소드의 _commit() 호출 -> publish_events 함수 호출 순으로 진행
         self._commit()
         self.publish_events()
 
+    
     def publish_events(self):
         for product in self.products.seen:
             while product.events:
