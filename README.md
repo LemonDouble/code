@@ -1,4 +1,14 @@
-# Example application code for the python architecture book
+<img src = "https://github.com/LemonDouble/python_architecture/blob/master/img/XL.jpg" width="50%" height="50%">
+
+## 파이썬으로 살펴보는 아키텍쳐 패턴
+
+파이썬으로 살펴보는 아키텍쳐 패턴 책을 읽고, 예제 코드를 살펴보며 주석을 다는 리포지토리입니다.
+
+단순히 책만 보는 것으로는 이해에 한계가 있어, 예제 코드에 직접 주석을 달며 이해력을 높였습니다.
+
+현재 도메인 모델링을 지원하는 아키텍쳐 구축 (Chap 07) 까지 읽었으며, 작성한 주석은 해당 리포지토리의 브랜치를 통해 확인할 수 있습니다.
+
+---
 
 ## Chapters
 
